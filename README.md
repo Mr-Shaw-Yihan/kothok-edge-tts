@@ -4,6 +4,20 @@
 [![documentation](https://docs.rs/kothok-edge-tts/badge.svg)](https://docs.rs/kothok-edge-tts)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
+> [!NOTE]
+> **中文（这是一个修复版 fork）**：本仓库是 [Nayeem170/kothok-edge-tts](https://github.com/Nayeem170/kothok-edge-tts) 的修复版。2026 年 10 月微软升级了 Edge 大声朗读接口的 `Sec-MS-GEC` 令牌校验（v2），上游尚未跟进，所有合成请求一律 403。本 fork 移植了 v2 令牌算法并修复（三个项目的关系：[rany2/edge-tts](https://github.com/rany2/edge-tts) 是协议的 Python 参考实现、v2 算法源自它的 7.3.0 版；本仓库是 Rust 移植版；详见下方 [October 2026 protocol change](#october-2026-protocol-change-sec-ms-gec-v2) 一节）。修复已提 PR 回上游：[#1](https://github.com/Nayeem170/kothok-edge-tts/pull/1)，合并后本 fork 将与上游保持一致。
+>
+> **English (this is a fixed fork)**: This repository is a fixed fork of
+> [Nayeem170/kothok-edge-tts](https://github.com/Nayeem170/kothok-edge-tts).
+> In October 2026 Microsoft upgraded the Edge Read-Aloud handshake to require
+> **v2** `Sec-MS-GEC` tokens; the upstream has not caught up yet, so every
+> synthesis fails with HTTP 403. This fork ports the v2 token algorithm
+> (originating from the MIT-licensed Python reference implementation
+> [rany2/edge-tts](https://github.com/rany2/edge-tts), v7.3.0) — see the
+> [October 2026 protocol change](#october-2026-protocol-change-sec-ms-gec-v2)
+> section below. The fix is upstreamed as
+> [PR #1](https://github.com/Nayeem170/kothok-edge-tts/pull/1).
+
 A Microsoft Edge online **text-to-speech** client for Rust. Replicates the Edge
 browser "Read Aloud" WebSocket protocol. Returns the same **400+ neural voices
 across 140+ locales** as streaming MP3 frames plus word-boundary metadata for
